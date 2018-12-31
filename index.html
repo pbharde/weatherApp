@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./styles/style.css">
+
+</head>
+<body>
+<header>
+  <h1>Weather App</h1>
+  <nav role='navigation'>
+    <ul>
+      <li><a class="link-1 entypo-light-up active" href="#home"></a></li>
+       <li><a class="link-2 entypo-user-add" href="#signUp"></a></li>
+      <li><a class="link-3 entypo-user" href="#signIn"></a></li>
+    </ul>
+  </nav>
+</header>
+
+<section id="home">
+  <h2>Weather App</h2>
+  <div></div>
+  <h3>Get Minute By Minute Weather Updates.</h3>
+      <p class="lead hide-on-small">
+        Get the weather forecast in simple and beatiful app and see current weather conditions from your Mac, PC, tablets and Mobile.
+      </p>
+</section>
+
+
+<section id="signUp">
+  <h2>Sign Up</h2></br>
+  <div>
+    <label class="lead">First Name:</label>
+    <input type="text" class="form-control" id="fname">
+    </div>
+    <div>
+    <label class="lead">Last Name:</label>
+    <input type="text" class="form-control" id="lname">
+    </div>
+    <div>
+    <label class="lead">Email address:</label>
+    <input type="text" class="form-control" id="email">
+    </div>
+    <div>
+    <label class="lead">Password:</label>
+    <input type="password" class="form-control" id="pwd">
+    </div>
+    <div>
+    <label class="lead">ZIP Code:</label>
+    <input type="text" class="form-control" id="zip">
+    </div>
+    </br>
+    <div>
+    <input type="checkbox" name="terms" id="terms" class="lead">
+     I Agree Terms & Coditions
+    </div>
+    </br>
+    <div>
+    <a href="#" class="btn btn-primary mb" onclick="signUp()">Sign Up</a>
+    </div>
+
+</section>
+
+<section id="signIn">
+  <h2>Sign In</h2></br>
+  <div class="illustration"></div>
+  <div>
+      <label for="emailIn" class="lead">Email address:</label>
+      <input type="text" class="form-control" id="emailIn">
+      </div>
+      <div>
+      <label for="pwdIn" class="lead">Password:</label>
+      <input type="password" class="form-control" id="pwdIn">
+      </div>
+      <div>
+      </br>
+      <a href="#" class="btn btn-secondary mb" onclick="signIn()">Sign In</a>
+      </div>
+</section>
+  
+  <script src="./js/index.js"></script>
+
+  <!-- firebase setup -->
+
+  <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDR3CsU7HDRpmHJp-EILHgrIQ9AqBELGx0",
+      authDomain: "weather-app-fa507.firebaseapp.com",
+      databaseURL: "https://weather-app-fa507.firebaseio.com",
+      projectId: "weather-app-fa507",
+      storageBucket: "weather-app-fa507.appspot.com",
+      messagingSenderId: "889575649271"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+</body>
+</html>

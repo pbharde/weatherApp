@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../styles/style.css">
+
+</head>
+<body>
+<header>
+  <h1>Weather App</h1>
+  <nav role='navigation'>
+    <ul>
+      <li><a class="link-1 entypo-light-up active" href="#dispWeather"></a></li>
+       <li><a class="link-2 entypo-search" href="#searchWeather"></a></li>
+      <li><a class="link-3 entypo-logout" onClick="logout()" href="#logout"></a></li>
+    </ul>
+  </nav>
+</header>
+
+<section id="dispWeather">
+  <div><h1 class="lead" id="dispName" style="float:left"></h1></div></br>
+        <div class="container">
+      <div>
+      <h2 class="section-head" id="cityName"></h2>
+    </div>
+      <img id="icon" src="" style="width:100px">
+      <div>
+      <label class="lead">Temperature:</label>
+      <label class="lead" id="temp"></label>
+      </div>
+      <div>
+      <label class="lead">Today:</label>
+      <label class="lead" id="condition"></label>
+      </div>
+      <div>
+      <label class="lead">Maximum Temp:</label>
+      <label class="lead" id="temp_max"></label>
+      </div>
+      <div>
+      <label class="lead">Minimum Temp:</label>
+      <label class="lead" id="temp_min"></label>
+      </div>
+      <div>
+      <label class="lead">Humidity:</label>
+      <label class="lead" id="humidity"></label>
+      </div>
+      <div>
+      <label class="lead">Pressure:</label>
+      <label class="lead" id="pressure"></label>
+      </div>
+    </div>
+</section>
+
+
+<section id="searchWeather">
+  <div class="container">
+      <h2 class="section-head">
+        <i class="fas fa-globe-americas"></i> Search Weather
+      </h2></br>
+    <div>
+    <label for="loc" class="lead">Search City:</label>
+    <input type="text" class="form-control" id="loc">
+    </div>
+    <div>
+    </br>
+    <a href="#" class="btn btn-primary mb" onclick="getWeather()">Get Weather...</a>
+    </div>
+    </div>
+</section>
+
+  <script src="../js/weather.js"></script>
+  <script src="../js/index.js"></script>
+
+
+</body>
+</html>
