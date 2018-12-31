@@ -1,3 +1,9 @@
+(function(){
+  if(localStorage.getItem("email")){
+  window.location.href = 'components/weather.html';
+}
+}())
+
 $(document).ready(function() {
 
   // On click, remove class on active element, add it to the new one
@@ -32,9 +38,9 @@ $(document).ready(function() {
 
 // signup
 function signUp(){
-  //console.log(firebase);
+
   const  dbCon = firebase.database().ref('/WeatherApp');
-  console.log(dbCon);
+
   let fname = document.getElementById("fname").value;
   let lname = document.getElementById("lname").value;
   let email = document.getElementById("email").value;
@@ -90,7 +96,7 @@ function signUp(){
 //signIn
 function signIn(){
   const  dbCon = firebase.database().ref('WeatherApp');
-  console.log(dbCon);
+
   const emailIn = document.getElementById("emailIn").value;
   const pwdIn = document.getElementById("pwdIn").value;
   if(emailIn==""){
@@ -103,22 +109,10 @@ function signIn(){
       var emailFound = emailFound.val();
       if(emailFound){
         Object.keys(emailFound).map(k => {
-          console.log(emailFound[k].pwd)
-                if(emailFound[k].pwd != pwdIn){
-                  console.log(emailFound[k])
-                  alert("Please enter correct Password")
+            if(emailFound[k].pwd != pwdIn){
+                alert("Please enter correct Password")
                 }
                 else{
-                  firebase.auth().createUserWithEmailAndPassword(emailIn, pwdIn).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-        alert(errorMessage);
-  // ...
-});
-
-
-                  // console.log("login Successfull.");
                   localStorage.setItem("email", emailIn);
                   localStorage.setItem("pwd", pwdIn);
                   localStorage.setItem("fname", emailFound[k].fname);
@@ -131,7 +125,6 @@ function signIn(){
       else{
         alert(`${emailIn} dosen't exist. Please sign Up.`)
       }
-
     });
     }
   }
