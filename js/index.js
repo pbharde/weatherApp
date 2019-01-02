@@ -37,7 +37,7 @@ $(document).ready(function() {
 
 
 // signup
-function signUp(){
+function signUpNow(){
 
   const  dbCon = firebase.database().ref('/WeatherApp');
 
@@ -47,7 +47,10 @@ function signUp(){
   let pwd = document.getElementById("pwd").value;
   let zip = document.getElementById("zip").value;
   let terms = document.getElementById("terms").checked;
+  const emailRe = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const zipRe = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
   // field validation
+
   if(fname==""){
     alert("Please enter First Name.");
   }
@@ -57,11 +60,17 @@ function signUp(){
   else if(email==""){
     alert("Please enter Email.");
   }
+  else if(emailRe.test(email)===false){
+    alert("Please enter Valid Email.");
+  }
   else if(pwd==""){
     alert("Please enter Password.");
   }
   else if(zip==""){
     alert("Please enter ZIP Code.");
+  }
+  else if(zipRe.test(zip)===false){
+    alert("Please enter Valid Zip Code.");
   }
   else if(terms==false){
     alert("Please agree Terms & Coditions.");
@@ -70,12 +79,12 @@ function signUp(){
     dbCon.orderByChild('email').equalTo(email).once('value').then(emailFound=>{
       var emailFound = emailFound.val();
       if(emailFound){
-        //document.getElementById('exist').innerHTML= "User Already exist. Please sign In."
         alert("User Already exist. Please sign In.");
-        fname=""; lname=''; email=''; pwd=''; zip=''; terms=!terms;
       }
       else{
+
         //enter User in firebase
+        document.getElementById('newUsr').innerHTML = "You have Signed Up successfully.";
         let newUser = {
                        fname:fname,
                        lname:lname,
@@ -85,10 +94,18 @@ function signUp(){
                        terms:terms
                      }
         dbCon.push(newUser);
-        fname=''; lname=''; email=''; pwd=''; zip=''; terms=!terms;
+
       }
 
     });
+
+    //Reset Input Fields
+    document.getElementById('fname').value = "";
+    document.getElementById('lname').value = "";
+    document.getElementById('email').value = "";
+    document.getElementById('pwd').value = "";
+    document.getElementById('zip').value = "";
+    document.getElementById("terms").checked = false;
   }
 
 }
@@ -99,25 +116,29 @@ function signIn(){
 
   const emailIn = document.getElementById("emailIn").value;
   const pwdIn = document.getElementById("pwdIn").value;
+  const emailRe = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   if(emailIn==""){
     alert("Please enter Email.");
+  }
+  else if(emailRe.test(emailIn)===false){
+    alert("Please enter Valid Email.");
   }
   else if(pwdIn==""){
     alert("Please enter Password.");
   }else{
-    dbCon.orderByChild('email').equalTo(emailIn).once('value').then(emailFound=>{
-      var emailFound = emailFound.val();
-      if(emailFound){
-        Object.keys(emailFound).map(k => {
-            if(emailFound[k].pwd != pwdIn){
+    dbCon.orderByChild('email').equalTo(emailIn).once('value').then(alreadyFound=>{
+      var alreadyFound = alreadyFound.val();
+      if(alreadyFound){
+        Object.keys(alreadyFound).map(k => {
+            if(alreadyFound[k].pwd != pwdIn){
                 alert("Please enter correct Password")
                 }
                 else{
                   localStorage.setItem("email", emailIn);
                   localStorage.setItem("pwd", pwdIn);
-                  localStorage.setItem("fname", emailFound[k].fname);
-                  localStorage.setItem("lname", emailFound[k].lname);
-                  localStorage.setItem("zip", emailFound[k].zip);
+                  localStorage.setItem("fname", alreadyFound[k].fname);
+                  localStorage.setItem("lname", alreadyFound[k].lname);
+                  localStorage.setItem("zip", alreadyFound[k].zip);
                   location.href = "components/weather.html";
                 }
              })
