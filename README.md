@@ -14,4 +14,6 @@ Please follow instructions to start app:
 4. Start the server with this command:  
    http-server
    
-5. Open your browser and go to the address http://localhost:8080 and you should see your local website. 
+5. Open your browser and go to the address http://localhost:8080 and you should see your local website.
+
+6. Please PREVIEW Google Tag Manager in the same browser where you are opening localhost.
